@@ -1,4 +1,4 @@
-import { createServerClient } from "@/lib/supabase/server"
+import { createServerClient, createStaticClient } from "@/lib/supabase/server"
 import { notFound } from "next/navigation"
 import { ProductDetail } from "@/components/product-detail"
 
@@ -26,20 +26,19 @@ export default async function ProductPage({ params }: ProductPageProps) {
     `)
     .eq("slug", params.slug)
     .single()
-  console.log("Fetched Products" , product)
+
   if (error || !product) {
     notFound()
   }
-
 
   return <ProductDetail product={product} />
 }
 
 export async function generateStaticParams() {
-  const supabase = await createServerClient()
+  const supabase = createStaticClient()
 
   const { data: products } = await supabase.from("products").select("slug")
-  console.log("Fetched Products" , product)
+  
   return (
     products?.map((product) => ({
       slug: product.slug,

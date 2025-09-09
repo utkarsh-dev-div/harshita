@@ -1,4 +1,5 @@
 import { createServerClient as supabaseCreateServerClient } from "@supabase/ssr"
+import { createClient as supabaseCreateClient } from "@supabase/supabase-js"
 import { cookies } from "next/headers"
 
 export async function createClient() {
@@ -41,4 +42,12 @@ export async function createServerClient() {
       },
     },
   })
+}
+
+// For static generation at build time (no cookies available)
+export function createStaticClient() {
+  return supabaseCreateClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
 }
