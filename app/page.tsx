@@ -197,7 +197,7 @@ export default function HomePage() {
           </div>
 
           <div className="border-t border-background/20 mt-8 pt-8 text-center">
-            <p className="text-sm text-background/60">© 2024 Chick Pick. All rights reserved.</p>
+            <p className="text-sm text-background/60">© 2025 Chick Pick. All rights reserved.</p>
           </div>
         </div>
       </footer>
